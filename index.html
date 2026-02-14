@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LinguaBridge AI - Your Voice Language Tutor</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Background Layers -->
+    <div class="background-layers">
+        <div class="gradient-mesh"></div>
+        <div class="grain-overlay"></div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="app-container">
+        <!-- Header Section -->
+        <header class="app-header">
+            <div class="logo-section">
+                <div class="logo-icon">
+                    <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <circle cx="20" cy="20" r="18" stroke="currentColor" stroke-width="2"/>
+                        <path d="M15 20 L20 25 L25 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <circle cx="20" cy="20" r="3" fill="currentColor"/>
+                    </svg>
+                </div>
+                <h1 class="logo-text">LinguaBridge AI</h1>
+            </div>
+            
+            <div class="header-controls">
+                <div class="language-selector">
+                    <label for="native-lang">Native:</label>
+                    <select id="native-lang" class="lang-select">
+                        <option value="en">English</option>
+                        <option value="de">German</option>
+                        <option value="es">Spanish</option>
+                        <option value="fr">French</option>
+                    </select>
+                </div>
+                <div class="language-selector">
+                    <label for="learning-lang">Learning:</label>
+                    <select id="learning-lang" class="lang-select">
+                        <option value="en">English</option>
+                        <option value="de">German</option>
+                        <option value="es" selected>Spanish</option>
+                        <option value="fr">French</option>
+                    </select>
+                </div>
+            </div>
+        </header>
+
+        <!-- Lesson Navigation -->
+        <nav class="lesson-nav">
+            <button class="lesson-btn active" data-lesson="greetings">
+                <span class="lesson-icon">👋</span>
+                <span class="lesson-label">Greetings</span>
+            </button>
+            <button class="lesson-btn" data-lesson="introductions">
+                <span class="lesson-icon">🤝</span>
+                <span class="lesson-label">Introductions</span>
+            </button>
+            <button class="lesson-btn" data-lesson="daily">
+                <span class="lesson-icon">☀️</span>
+                <span class="lesson-label">Daily Life</span>
+            </button>
+            <button class="lesson-btn" data-lesson="workplace">
+                <span class="lesson-icon">💼</span>
+                <span class="lesson-label">Workplace</span>
+            </button>
+            <button class="lesson-btn" data-lesson="emergency">
+                <span class="lesson-icon">🚨</span>
+                <span class="lesson-label">Emergency</span>
+            </button>
+        </nav>
+
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Chat Container -->
+            <div class="chat-container" id="chatContainer">
+                <div class="welcome-message">
+                    <div class="avatar-large">
+                        <div class="avatar-core"></div>
+                        <div class="avatar-ring"></div>
+                        <div class="avatar-pulse"></div>
+                    </div>
+                    <h2 class="welcome-title">Welcome to LinguaBridge AI</h2>
+                    <p class="welcome-subtitle">Your personal voice language tutor. Click the microphone to start practicing!</p>
+                </div>
+            </div>
+
+            <!-- Voice Control Panel -->
+            <div class="voice-panel">
+                <div class="status-indicator">
+                    <div class="status-dot"></div>
+                    <span class="status-text" id="statusText">Ready</span>
+                </div>
+
+                <button class="mic-button" id="micButton">
+                    <div class="mic-icon">
+                        <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 1a3 3 0 0 0-3 3v8a3 3 0 0 0 6 0V4a3 3 0 0 0-3-3z" stroke="currentColor" stroke-width="2"/>
+                            <path d="M19 10v2a7 7 0 0 1-14 0v-2M12 19v4M8 23h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <div class="listening-animation">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </button>
+
+                <div class="hint-text" id="hintText">
+                    Click the microphone to speak
+                </div>
+            </div>
+        </main>
+
+        <!-- Footer -->
+        <footer class="app-footer">
+            <p>Powered by Browser Speech Recognition • Works Offline</p>
+        </footer>
+    </div>
+
+    <!-- Data Scripts (JSON stored in HTML) -->
+    <script id="lessons-data" type="application/json">
+    {
+        "greetings": {
+            "title": "Greetings",
+            "icon": "👋",
+            "intro": "Let's practice basic greetings! I'll help you learn how to say hello and goodbye.",
+            "phrases": [
+                {"text": "Hello", "de": "Hallo", "es": "Hola", "fr": "Bonjour"},
+                {"text": "Good morning", "de": "Guten Morgen", "es": "Buenos días", "fr": "Bonjour"},
+                {"text": "Good evening", "de": "Guten Abend", "es": "Buenas noches", "fr": "Bonsoir"},
+                {"text": "Goodbye", "de": "Auf Wiedersehen", "es": "Adiós", "fr": "Au revoir"},
+                {"text": "See you later", "de": "Bis später", "es": "Hasta luego", "fr": "À plus tard"}
+            ],
+            "prompts": [
+                "How do you greet someone in the morning?",
+                "Try saying hello to me!",
+                "How would you say goodbye?",
+                "Can you greet me?",
+                "How do you say good evening?"
+            ]
+        },
+        "introductions": {
+            "title": "Introductions",
+            "icon": "🤝",
+            "intro": "Time to introduce yourself! Learn how to share your name and ask others about themselves.",
+            "phrases": [
+                {"text": "My name is", "de": "Ich heiße", "es": "Me llamo", "fr": "Je m'appelle"},
+                {"text": "What is your name?", "de": "Wie heißt du?", "es": "¿Cómo te llamas?", "fr": "Comment tu t'appelles?"},
+                {"text": "Nice to meet you", "de": "Schön dich kennenzulernen", "es": "Encantado de conocerte", "fr": "Enchanté de te rencontrer"},
+                {"text": "How are you?", "de": "Wie geht es dir?", "es": "¿Cómo estás?", "fr": "Comment ça va?"},
+                {"text": "I am fine, thank you", "de": "Mir geht es gut, danke", "es": "Estoy bien, gracias", "fr": "Je vais bien, merci"}
+            ],
+            "prompts": [
+                "Can you introduce yourself to me?",
+                "Ask me what my name is!",
+                "How would you ask someone how they are?",
+                "Tell me your name!",
+                "How do you say nice to meet you?"
+            ]
+        },
+        "daily": {
+            "title": "Daily Conversation",
+            "icon": "☀️",
+            "intro": "Let's talk about everyday activities! Practice common phrases you'll use daily.",
+            "phrases": [
+                {"text": "I want coffee", "de": "Ich möchte Kaffee", "es": "Quiero café", "fr": "Je veux du café"},
+                {"text": "Where is the bathroom?", "de": "Wo ist die Toilette?", "es": "¿Dónde está el baño?", "fr": "Où sont les toilettes?"},
+                {"text": "How much does this cost?", "de": "Wie viel kostet das?", "es": "¿Cuánto cuesta esto?", "fr": "Combien ça coûte?"},
+                {"text": "I don't understand", "de": "Ich verstehe nicht", "es": "No entiendo", "fr": "Je ne comprends pas"},
+                {"text": "Can you help me?", "de": "Kannst du mir helfen?", "es": "¿Puedes ayudarme?", "fr": "Peux-tu m'aider?"}
+            ],
+            "prompts": [
+                "How would you order coffee?",
+                "Ask where the bathroom is!",
+                "How do you ask about the price?",
+                "Tell me you don't understand something",
+                "Ask for help!"
+            ]
+        },
+        "workplace": {
+            "title": "Workplace",
+            "icon": "💼",
+            "intro": "Professional phrases for the office! Learn how to communicate at work.",
+            "phrases": [
+                {"text": "I have a meeting", "de": "Ich habe ein Meeting", "es": "Tengo una reunión", "fr": "J'ai une réunion"},
+                {"text": "Can we schedule a call?", "de": "Können wir einen Anruf planen?", "es": "¿Podemos programar una llamada?", "fr": "On peut programmer un appel?"},
+                {"text": "I need more time", "de": "Ich brauche mehr Zeit", "es": "Necesito más tiempo", "fr": "J'ai besoin de plus de temps"},
+                {"text": "Great work!", "de": "Großartige Arbeit!", "es": "¡Buen trabajo!", "fr": "Excellent travail!"},
+                {"text": "Let's discuss this", "de": "Lass uns darüber sprechen", "es": "Hablemos de esto", "fr": "Discutons-en"}
+            ],
+            "prompts": [
+                "Tell me you have a meeting",
+                "How do you ask to schedule a call?",
+                "Say you need more time for a project",
+                "Compliment someone's work!",
+                "Suggest discussing something"
+            ]
+        },
+        "emergency": {
+            "title": "Emergency Phrases",
+            "icon": "🚨",
+            "intro": "Important phrases for emergencies. These could save the day!",
+            "phrases": [
+                {"text": "Help!", "de": "Hilfe!", "es": "¡Ayuda!", "fr": "Au secours!"},
+                {"text": "Call the police", "de": "Ruf die Polizei", "es": "Llama a la policía", "fr": "Appelle la police"},
+                {"text": "I need a doctor", "de": "Ich brauche einen Arzt", "es": "Necesito un médico", "fr": "J'ai besoin d'un médecin"},
+                {"text": "Where is the hospital?", "de": "Wo ist das Krankenhaus?", "es": "¿Dónde está el hospital?", "fr": "Où est l'hôpital?"},
+                {"text": "This is urgent", "de": "Das ist dringend", "es": "Esto es urgente", "fr": "C'est urgent"}
+            ],
+            "prompts": [
+                "How do you call for help?",
+                "Tell someone to call the police",
+                "How do you say you need a doctor?",
+                "Ask where the hospital is",
+                "Say this is urgent!"
+            ]
+        }
+    }
+    </script>
+
+    <script id="translations-data" type="application/json">
+    {
+        "en": {
+            "name": "English",
+            "grammar_patterns": {
+                "articles": ["a", "an", "the"],
+                "pronouns": ["I", "you", "he", "she", "it", "we", "they"],
+                "common_verbs": ["is", "am", "are", "was", "were", "have", "has", "had"]
+            }
+        },
+        "de": {
+            "name": "German",
+            "grammar_patterns": {
+                "articles": ["der", "die", "das", "ein", "eine"],
+                "pronouns": ["ich", "du", "er", "sie", "es", "wir", "ihr"],
+                "common_verbs": ["ist", "sind", "war", "haben", "hat"]
+            }
+        },
+        "es": {
+            "name": "Spanish",
+            "grammar_patterns": {
+                "articles": ["el", "la", "los", "las", "un", "una"],
+                "pronouns": ["yo", "tú", "él", "ella", "nosotros", "ellos"],
+                "common_verbs": ["es", "está", "son", "hay", "tiene"]
+            }
+        },
+        "fr": {
+            "name": "French",
+            "grammar_patterns": {
+                "articles": ["le", "la", "les", "un", "une", "des"],
+                "pronouns": ["je", "tu", "il", "elle", "nous", "vous", "ils"],
+                "common_verbs": ["est", "sont", "a", "ont", "été"]
+            }
+        }
+    }
+    </script>
+
+    <!-- Core Engine Scripts -->
+    <script src="stateManager.js"></script>
+    <script src="voiceEngine.js"></script>
+    <script src="languageEngine.js"></script>
+    <script src="lessonEngine.js"></script>
+    <script src="uiEngine.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
